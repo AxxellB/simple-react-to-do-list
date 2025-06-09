@@ -4,8 +4,11 @@ import TodoList from "./components/TodoList";
 import TodoInput from "./components/TodoInput";
 import { Todo } from "./types/todo";
 
+type Filter = "all" | "active" | "completed";
+
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [filter, setFilter] = useState<Filter>("all");
 
   const addTodo = (text: string) => {
     const newTodo: Todo = {
@@ -24,10 +27,29 @@ function App() {
     );
   };
 
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") return !todo.isCompleted;
+    if (filter === "completed") return todo.isCompleted;
+    return true;
+  });
+
   return (
     <div className="App">
+      <h1 className="app-title">Todo App</h1>
+
       <TodoInput addTodo={addTodo} />
-      <TodoList todos={todos} toggleComplete={toggleComplete} />
+
+      <select
+        className="filter-select"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value as Filter)}
+      >
+        <option value="all">All Todos</option>
+        <option value="active">Active Todos</option>
+        <option value="completed">Completed Todos</option>
+      </select>
+
+      <TodoList todos={filteredTodos} toggleComplete={toggleComplete} />
     </div>
   );
 }

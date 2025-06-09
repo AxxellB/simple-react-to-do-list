@@ -7,8 +7,8 @@ type Props = {
 
 const TodoItem = ({ todo, toggleComplete }: Props) => {
   return (
-    <div>
-      <p>{todo.text}</p>
+    <div className="todo-item">
+      <p className={todo.isCompleted ? "completed" : ""}>{todo.text}</p>
       <p></p>
       <input
         type="checkbox"
