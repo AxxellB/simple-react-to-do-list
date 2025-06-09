@@ -7,10 +7,27 @@ import { Todo } from "./types/todo";
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  const addTodo = (text: string) => {
+    const newTodo: Todo = {
+      id: Date.now(),
+      text,
+      isCompleted: false,
+    };
+    setTodos((prev) => [...prev, newTodo]);
+  };
+
+  const toggleComplete = (id: number) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
+  };
+
   return (
     <div className="App">
-      <TodoInput setTodos={setTodos} />
-      <TodoList></TodoList>
+      <TodoInput addTodo={addTodo} />
+      <TodoList todos={todos} toggleComplete={toggleComplete} />
     </div>
   );
 }

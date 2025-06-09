@@ -1,8 +1,20 @@
-const TodoList = () => {
+import { Todo } from "../types/todo";
+import TodoItem from "./TodoItem";
+
+type Props = {
+  todos: Todo[];
+  toggleComplete: (id: number) => void;
+};
+
+const TodoList = ({ todos, toggleComplete }: Props) => {
   return (
-    <div>
-      <h1>To do items</h1>
-    </div>
+    <ul>
+      {todos.map((todo: Todo) => {
+        return (
+          <TodoItem key={todo.id} todo={todo} toggleComplete={toggleComplete} />
+        );
+      })}
+    </ul>
   );
 };
 

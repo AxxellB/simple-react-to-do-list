@@ -1,9 +1,21 @@
 import { Todo } from "../types/todo";
 
-const TodoItem = ({ text }: Todo) => {
+type Props = {
+  todo: Todo;
+  toggleComplete: (id: number) => void;
+};
+
+const TodoItem = ({ todo, toggleComplete }: Props) => {
   return (
     <div>
-      <p>{text}</p>
+      <p>{todo.text}</p>
+      <p></p>
+      <input
+        type="checkbox"
+        checked={todo.isCompleted}
+        onChange={() => toggleComplete(todo.id)}
+      />
+      <span>{todo.isCompleted ? "Completed" : "Active"}</span>
     </div>
   );
 };
