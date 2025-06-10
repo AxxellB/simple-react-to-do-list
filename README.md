@@ -2,11 +2,31 @@
 
 This is a Simple To Do App built with React & TypeScript.
 
-## How to start
+## Features
 
-In the project directory open a terminal and run the command:
+- Add new todos
+- Mark todos as completed using checkboxes
+- Filter todos (All / Active / Completed) via dropdown
 
-### `npm start`
+## Setup
 
-The command runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/AxxellB/simple-react-to-do-list
+cd simple-react-to-do-app
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the app in development
+
+```bash
+npm start
+```
+
+The app should start running on http://localhost:3000/
